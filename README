@@ -1,0 +1,43 @@
+Zimbra Delegate Auth Log Watch
+##############################
+:date: 2014-03-07
+:tags: zimbra, email, logging, delegateauth
+:category: \*nix
+
+Zimbra provides the ability for administrators of accounts to login and
+use delegated authentication which allows administrators to read email from
+their assigned accounts.  This simple application will watch the zimbra log
+and notify a defined user that the delegated authentication has happened.
+
+
+Installation
+^^^^^^^^^^^^
+
+Clone the repository and once it's been downloaded, either create or copy the
+example `zimbra_delagate.ini` file to either your home directory as a hidden
+"dot" file or create a directory in `/ect` for `zimbra_delegate` and copy the
+example configuration file there.
+
+Example:
+
+.. code-block:: bash
+
+    cp zimbra_delagate.ini ~/.zimbra_delagate.ini
+
+
+After you move this file into place, use your favorite text editor and fill in
+the values based on your environment. When ready, make the file
+`zimbra_log_watch.py` executable and then run it.
+
+.. code-block:: bash
+
+    chmod +x zimbra_log_watch.py
+    ./zimbra_log_watch.py
+
+
+While these two steps are the only things that you have to do to get this
+running, I recommend that you create a simple init script to run the
+application on startup. this can be done in a variety of ways and I've included
+one such way in the example file, `zimbra_log_watch.example.init.sh` but you
+could also simply add the path to the script in an `/etc/rc.local`. This is
+all up to you.
