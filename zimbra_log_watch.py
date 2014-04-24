@@ -212,7 +212,7 @@ class Mailer(object):
 
             em_msg = MIMEText(customer_message, 'plain', None)
             em_msg["Subject"] = "DelegateAuthRequest on %s" % HOSTNAME
-            em_msg["From"] = HOSTNAME
+            em_msg["From"] = APP_CONFIG.get('mail_username')
             em_msg["To"] = APP_CONFIG.get('send_to')
             em_msg["Reply-To"] = HOSTNAME
 
@@ -282,6 +282,11 @@ class LogRead(object):
                     pass
                 else:
                     if data:
+                        LOG.warn(
+                            'Authentication Delegation Detected from'
+                            ' AccountID: "%s" with AccountName: "%s"'
+                            % (data[1], data[2])
+                        )
                         check.append(data)
 
         if check:
